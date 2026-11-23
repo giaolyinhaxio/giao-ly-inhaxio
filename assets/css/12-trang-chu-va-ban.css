@@ -1,0 +1,52 @@
+/* UI v4: trang chủ, khẩu hiệu các lớp, ô quản lý và thông tin Ban */
+#election-go-members { background: #eaf2ff; border-color: #bbd3f5; }
+#election-go-ballot { background: #edf7ed; border-color: #bfdfc4; }
+#election-go-history { background: #f3edff; border-color: #d7c5f4; }
+#election-home .election-tile:hover { filter: brightness(.97); }
+#page-lop-giao-ly .class-card .class-motto {
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: inherit;
+  font-weight: 500;
+}
+.home-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  padding: clamp(24px, 4vw, 64px);
+  margin: 20px 0 32px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #e0f0ff, #eee7ff);
+}
+.home-welcome-brand { display: flex; align-items: center; gap: 14px; }
+.home-welcome-brand img { width: 64px; height: 64px; object-fit: contain; border-radius: 50%; }
+.home-welcome-brand span { color: #52647c; font-size: 14px; line-height: 1.5; }
+.home-welcome h1 { font-size: clamp(28px, 3.5vw, 48px); line-height: 1.2; margin: 24px 0; }
+.home-welcome-description { font-size: 16px; line-height: 1.7; color: #52647c; }
+.home-welcome-description:empty { display: none; }
+.home-welcome-image { background: #fff; padding: 24px; border-radius: 20px; box-shadow: 0 18px 40px #334e7820; }
+.home-welcome-image img { display: block; width: 100%; max-height: 380px; aspect-ratio: 1; object-fit: contain; }
+#page-trang-chu .feature-card { min-height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+#page-trang-chu .feature-card h3 { margin: 0; font-size: 22px; }
+.ban-information-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #d2c5ef;
+  border-radius: 18px;
+  background: #f3edff;
+  color: #493777;
+  font-size: 18px;
+  font-weight: 700;
+}
+.ban-information-card:hover { background: #eae0ff; }
+@media (max-width: 700px) {
+  .home-welcome { grid-template-columns: 1fr; gap: 24px; }
+  .home-welcome-image { max-width: 320px; width: 100%; box-sizing: border-box; justify-self: center; }
+}
+

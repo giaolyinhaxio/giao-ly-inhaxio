@@ -1,0 +1,37 @@
+/* UI v7: điều hướng và màu các trang nội dung */
+.page-intro > .page-back, .home-breadcrumb > .page-back { margin: 0 14px 12px 0; padding: 9px 14px; vertical-align: middle; font-size: 16px; }
+.home-breadcrumb { margin-top: 20px; color: #6b7e99; }
+#page-class .page-intro h1, #page-ban-giao-ly .page-intro h1, #page-su-kien .page-intro h1 { font-size: clamp(26px, 3vw, 32px); text-align: center; text-transform: uppercase; margin: 28px 0 12px; }
+#page-class #class-description { text-align: center; font-size: 18px; font-weight: 600; }
+#page-class[data-class-name="chien-con"] .resource-panel { background: #fce0ec; border-color: #f0afcc; }
+#page-class[data-class-name="au-nhi"] .resource-panel { background: #e5f3b2; border-color: #b9d96b; }
+#page-class[data-class-name="thieu-nhi"] .resource-panel { background: #dcecff; border-color: #9ac4f5; }
+#page-ban-giao-ly .resource-panel { background: #f3edff; border-color: #d7c5f4; }
+#page-su-kien .event-card { background: #edf7ed; border: 1px solid #bfdfc4; border-radius: 18px; padding: 24px; }
+#page-su-kien .event-card:nth-child(even) { background: #eef5ff; border-color: #c5d9f2; }
+
+/* UI v8: mũi tên quay lại gọn, ngang hàng với breadcrumb */
+.page-intro > .page-back, .home-breadcrumb > .page-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75em;
+  height: 1.75em;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0 8px 0 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  color: #647894;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.page-intro > .page-back:hover, .home-breadcrumb > .page-back:hover { background: #e8f0fa; color: #1b5193; }
+.page-intro > .page-back:focus-visible, .home-breadcrumb > .page-back:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.home-breadcrumb > span { font-size: 14px; vertical-align: middle; }

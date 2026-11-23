@@ -1,0 +1,19 @@
+/* UI v5: giới thiệu cộng đoàn và các thẻ nội dung */
+#page-trang-chu .home-welcome { grid-template-columns: minmax(0, 1fr); }
+.home-welcome-copy { max-width: 960px; }
+.home-welcome-description { margin-bottom: 24px; }
+#page-trang-chu .feature-card { flex-direction: column; gap: 12px; }
+#page-trang-chu .feature-card p { margin: 0; font-size: 16px; line-height: 1.6; }
+.tile-icon { display: block; font-size: 30px; line-height: 1; margin-bottom: 12px; }
+#page-lop-giao-ly .class-card .class-summary { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: inherit; }
+.registration-card { display: flex; align-items: center; gap: 20px; padding: 24px; margin-top: 24px; border: 1px solid #d4c4ed; border-radius: 18px; background: #f3edff; color: #493777; }
+.registration-card > div { flex: 1; min-width: 0; }
+.registration-card h2 { font-size: 22px; margin: 0 0 8px; }
+.registration-card p { font-size: 16px; margin: 0; }
+.registration-card .tile-icon { margin: 0; }
+.ban-about { padding: 24px; margin-bottom: 24px; background: #eef5ff; border: 1px solid #d6e5f5; border-radius: 18px; }
+.ban-about h2 { text-align: center; font-size: 24px; }
+.ban-about p { font-size: 16px; line-height: 1.8; }
+#page-ban-giao-ly .resource-panel, #page-class .resource-panel { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+#page-ban-giao-ly .resource-panel > div, #page-class .resource-panel > div { flex: 1 1 240px; }
+

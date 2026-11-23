@@ -1,0 +1,110 @@
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px
+}
+
+.class-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    border: 1px solid #e2eaf3;
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    transition: transform .2s, box-shadow .2s
+}
+
+.class-illustration {
+    height: 110px;
+    border-radius: 12px;
+    font-size: 4.5rem;
+    line-height: 110px;
+    text-align: center
+}
+
+.illustration-blue {
+    background: #e5f1ff;
+    color: #3578bf
+}
+
+.illustration-red {
+    background: #ffebe9;
+    color: #d3544e
+}
+
+.illustration-green {
+    background: #e8f5e8;
+    color: #5f9867
+}
+
+.class-card h2 {
+    font: 600 1.75rem Georgia, serif;
+    margin: 7px 0
+}
+
+.class-card .class-kicker {
+    margin-top: 22px
+}
+
+.resource-panel {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: #fff;
+    border: 1px solid #e1eaf5;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 10px 35px #1c4c8410
+}
+
+.resource-icon {
+    width: 72px;
+    height: 72px;
+    flex: none;
+    background: #e8f2fe;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 2.5rem;
+    color: #2465af
+}
+
+.red-icon {
+    color: #cd5550;
+    background: #fff0ee
+}
+
+.resource-panel>div:nth-child(2) {
+    flex: 1
+}
+
+.resource-panel h2 {
+    font: 600 1.7rem Georgia, serif;
+    margin: 5px 0
+}
+
+.resource-panel p {
+    color: #697992;
+    margin: 0
+}
+
+.empty-label {
+    font-size: .88rem;
+    color: #8491a3;
+    background: #f0f3f7;
+    padding: 10px 14px;
+    border-radius: 9px;
+    white-space: nowrap
+}
+
+.gentle-note {
+    color: #5f718b;
+    line-height: 1.7;
+    border-left: 3px solid #8fb4da;
+    background: #eef5fd;
+    padding: 16px 18px;
+    margin-top: 25px;
+    border-radius: 0 12px 12px 0
+}
+

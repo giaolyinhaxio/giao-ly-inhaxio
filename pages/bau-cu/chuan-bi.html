@@ -1,0 +1,68 @@
+<section id="election-prepare-screen" class="election-screen" hidden>
+              <div class="preparation-toolbar">
+                <button class="secondary-button election-back" type="button">
+                  ← Quay lại
+                </button>
+
+                <p id="election-admin-status" class="muted"></p>
+              </div>
+
+              <div class="preparation-header">
+                <h2>Chuẩn bị bầu cử</h2>
+              </div>
+
+              <div class="election-setup preparation-box preparation-name">
+                <label for="election-name">Tên cuộc bầu cử</label>
+                <input
+                  id="election-name"
+                  maxlength="120"
+                  placeholder="Ví dụ: Bầu Ban Giáo lý"
+                >
+              </div>
+
+              <div id="election-manage">
+
+                <div class="preparation-box preparation-candidates">
+                  <div class="election-heading">
+                    <h3>Danh sách ứng cử viên</h3>
+                  </div>
+
+                  <div
+                    id="election-admin-candidates"
+                    class="election-list"
+                  ></div>
+
+                  <button
+                    id="candidate-picker-open"
+                    class="secondary-button"
+                    type="button"
+                  >
+                    + Thêm
+                  </button>
+                </div>
+
+                <div class="election-setup preparation-box preparation-choices">
+                  <label for="election-choices">
+                    Số người cần bình chọn
+                  </label>
+
+                  <select id="election-choices">
+                    <option value="1">1 người</option>
+                    <option value="2">2 người</option>
+                    <option value="3">3 người</option>
+                    <option value="4">4 người</option>
+                    <option value="5">5 người</option>
+                  </select>
+                </div>
+
+                <div class="election-center">
+                  <button
+                    id="election-start"
+                    class="primary-button"
+                    type="button"
+                  >
+                    Bắt đầu bầu cử
+                  </button>
+                </div>
+              </div>
+            </section>

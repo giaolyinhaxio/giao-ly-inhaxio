@@ -1,0 +1,33 @@
+.page-intro {
+    max-width: 760px;
+    margin-bottom: 45px
+}
+
+.page-intro>.breadcrumb,
+.page-intro>span:not(.eyebrow) {
+    font-size: .84rem;
+    color: #718198;
+    margin-right: 7px
+}
+
+.breadcrumb:hover {
+    color: #12529a;
+    text-decoration: underline
+}
+
+.page-intro>.eyebrow {
+    margin-top: 57px
+}
+
+.page-intro h1 {
+    font-size: clamp(2.7rem, 5vw, 4.1rem);
+    margin: 14px 0
+}
+
+.page-intro p {
+    color: #5b6d86;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin: 0
+}
+

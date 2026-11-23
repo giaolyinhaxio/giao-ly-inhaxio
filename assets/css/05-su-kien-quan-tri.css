@@ -1,0 +1,171 @@
+.events-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 22px
+}
+
+.events-toolbar h2 {
+    margin: 0
+}
+
+.events-list {
+    display: grid;
+    gap: 15px
+}
+
+.event-card {
+    background: #fff;
+    border: 1px solid #e2eaf3;
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    gap: 26px;
+    align-items: flex-start
+}
+
+.event-date-block {
+    width: 92px;
+    flex: none;
+    text-align: center;
+    background: #eef5fe;
+    border-radius: 14px;
+    padding: 9px;
+    color: #20589d
+}
+
+.event-date-block strong {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 2.25rem;
+    line-height: 1.3
+}
+
+.event-date-block span {
+    font-size: .77rem;
+    font-weight: 800;
+    letter-spacing: .07em
+}
+
+.event-info {
+    flex: 1
+}
+
+.event-info h3 {
+    font: 600 1.55rem Georgia, serif;
+    margin: 0 0 8px
+}
+
+.event-info p {
+    margin: 9px 0 0;
+    color: #60738d;
+    white-space: pre-wrap
+}
+
+.event-meta {
+    font-size: .88rem;
+    font-weight: 700;
+    color: #35649c
+}
+
+.event-actions {
+    display: flex;
+    gap: 8px
+}
+
+.event-actions button {
+    border: 1px solid #e0e8f3;
+    background: white;
+    color: #285993;
+    border-radius: 8px;
+    padding: 7px 11px
+}
+
+.event-actions button:last-child {
+    color: #b53535
+}
+
+.empty-state {
+    border: 1px dashed #c9d8e8;
+    background: #fff;
+    border-radius: 18px;
+    text-align: center;
+    padding: 70px 20px;
+    color: #6b7b90
+}
+
+.empty-state strong {
+    display: block;
+    color: #213c66;
+    font: 600 1.55rem Georgia, serif;
+    margin-bottom: 7px
+}
+
+.empty-state span {
+    font-size: 2.3rem;
+    color: #4984be
+}
+
+.coming-soon {
+    text-align: center;
+    border: 1px solid #e3e9f3;
+    border-radius: 22px;
+    background: linear-gradient(150deg, #eaf3ff, #fff8ee);
+    padding: 85px 20px
+}
+
+.coming-symbol {
+    font-size: 4.6rem;
+    color: #cb544d
+}
+
+.coming-soon h2 {
+    font: 600 2rem Georgia, serif;
+    margin: 8px 0
+}
+
+.coming-soon p {
+    color: #65758b
+}
+
+.admin-panel {
+    background: #fff;
+    border: 1px solid #e2eaf3;
+    border-radius: 18px;
+    padding: 30px;
+    max-width: 760px;
+    display: grid;
+    gap: 20px
+}
+
+.admin-panel>button {
+    justify-self: start
+}
+
+.admin-panel label,
+.app-dialog label {
+    display: grid;
+    gap: 8px;
+    font-size: .88rem;
+    font-weight: 750;
+    color: #314a6d
+}
+
+.admin-panel input,
+.app-dialog input,
+.app-dialog textarea {
+    width: 100%;
+    border: 1px solid #cedbea;
+    background: #fbfdff;
+    border-radius: 10px;
+    padding: 12px;
+    color: #182d52;
+    font-weight: 400
+}
+
+.admin-panel input::placeholder,
+.app-dialog input::placeholder {
+    color: #a5b1c2
+}
+

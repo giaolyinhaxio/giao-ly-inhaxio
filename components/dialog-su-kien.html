@@ -1,0 +1,12 @@
+<dialog id="event-dialog" class="app-dialog">
+    <form id="event-form" method="dialog"><button type="button" class="dialog-close" data-close-dialog
+        aria-label="Đóng">✕</button><span class="eyebrow">LỊCH HOẠT ĐỘNG</span>
+      <h2 id="event-title">Thêm sự kiện</h2><input id="event-id" type="hidden"><label>Tên sự kiện<input id="event-name"
+          name="title" required maxlength="120"></label><label>Ngày và giờ<input id="event-date" name="event_date"
+          type="datetime-local" required></label><label>Địa điểm<input id="event-location" name="location" required
+          maxlength="160"></label><label>Giới thiệu ngắn<textarea id="event-description" name="description" rows="4"
+          maxlength="2000"></textarea></label>
+      <p id="event-error" class="form-error" role="alert" hidden></p><button type="submit"
+        class="primary-button full-width">Lưu sự kiện</button>
+    </form>
+  </dialog>

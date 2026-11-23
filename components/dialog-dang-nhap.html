@@ -1,0 +1,14 @@
+<dialog id="auth-dialog" class="app-dialog">
+    <form id="auth-form" method="dialog"><button type="button" class="dialog-close" data-close-dialog
+        aria-label="Đóng">✕</button><span class="eyebrow">CÙNG KẾT NỐI</span>
+      <h2 id="auth-title">Đăng nhập</h2>
+      <p id="auth-subtitle">Sử dụng tài khoản Giáo lý Inhaxio của bạn.</p>
+      <div id="auth-name-row" hidden><label>Họ và tên<input id="auth-name" name="name" autocomplete="name"
+            maxlength="80"></label></div><label>Tên đăng nhập<input id="auth-username" name="username"
+          autocomplete="username" required minlength="3" maxlength="32"></label><label>Mật khẩu<input id="auth-password"
+          name="password" type="password" autocomplete="current-password" required minlength="8"></label>
+      <p id="auth-error" class="form-error" role="alert" hidden></p><button id="auth-submit" type="submit"
+        class="primary-button full-width">Đăng nhập</button><button id="auth-switch" type="button"
+        class="text-button">Chưa có tài khoản? Tạo tài khoản người dùng</button>
+    </form>
+  </dialog>

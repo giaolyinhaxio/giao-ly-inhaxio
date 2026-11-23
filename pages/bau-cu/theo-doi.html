@@ -1,0 +1,27 @@
+<section id="election-live-screen" class="election-screen" hidden>
+              <div class="live-toolbar">
+                <button class="secondary-button election-back" type="button">← Quay lại</button>
+                <p id="election-live-status" class="muted"></p>
+              </div>
+              <div class="live-title-box">
+                <h2 id="election-live-title">Bầu cử đang diễn ra</h2>
+              </div>
+
+              <div class="live-summary-box">
+                <p id="election-total"></p>
+                
+              </div>
+
+              <div class="live-results-box">
+                <h3>Kết quả</h3>
+
+                <div
+                  id="election-result-list"
+                  class="election-list"
+                  aria-live="polite"
+                ></div>
+              </div>
+              <div id="election-live-actions" class="election-center"><button id="election-close" class="primary-button" type="button">Kết thúc bầu cử</button><button id="election-cancel" class="secondary-button danger-button" type="button">Hủy bầu cử</button></div>
+              <button id="election-publish" class="primary-button" type="button" hidden>Công bố kết quả</button>
+              <div id="election-qr" hidden><h3>QR chung để bầu cử</h3><img id="election-qr-image" alt="Mã QR vào trang bầu cử"><a id="election-public-link" href="#">Mở trang bầu cử</a><p id="election-qr-note" hidden>App đang chạy trên máy này. Cần địa chỉ HTTPS công khai để mọi người quét QR và bầu cử.</p></div>
+            </section>

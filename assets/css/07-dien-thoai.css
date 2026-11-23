@@ -1,0 +1,234 @@
+@media(max-width:950px) {
+    .hero {
+        grid-template-columns: 1fr .8fr
+    }
+
+    .art-disc {
+        width: 250px;
+        height: 250px
+    }
+
+    .art-halo {
+        width: 320px;
+        height: 320px
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .hero h1 {
+        font-size: 3.4rem
+    }
+
+    .site-footer {
+        padding-inline: 24px
+    }
+}
+
+@media(max-width:670px) {
+    .site-header {
+        height: 72px;
+        padding: 0 18px
+    }
+
+    .brand img {
+        width: 44px;
+        height: 44px
+    }
+
+    .brand {
+        gap: 9px
+    }
+
+    .brand strong {
+        font-size: .77rem
+    }
+
+    .brand small {
+        font-size: .62rem
+    }
+
+    .account-chip {
+        display: none
+    }
+
+    .menu-button {
+        height: 43px;
+        width: 43px
+    }
+
+    .page {
+        padding: 0 18px 65px
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 55px 0 0;
+        min-height: 0
+    }
+
+    .hero h1 {
+        font-size: clamp(2.6rem, 10vw, 4rem);
+        margin: 18px 0
+    }
+
+    .hero-copy>p {
+        font-size: 1rem;
+        margin-bottom: 25px
+    }
+
+    .hero-art {
+        height: 315px
+    }
+
+    .art-disc {
+        width: 220px;
+        height: 220px;
+        padding: 10px
+    }
+
+    .art-halo {
+        width: 295px;
+        height: 295px
+    }
+
+    .art-caption {
+        bottom: 10px;
+        right: 8px
+    }
+
+    .section-heading {
+        margin-top: 35px
+    }
+
+    .section-heading p {
+        display: none
+    }
+
+    .section-heading h2 {
+        font-size: 1.75rem
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 12px
+    }
+
+    .feature-card {
+        min-height: 235px
+    }
+
+    .feature-number {
+        margin-top: 14px
+    }
+
+    .content-page {
+        padding-top: 25px
+    }
+
+    .page-intro>.eyebrow {
+        margin-top: 38px
+    }
+
+    .page-intro {
+        margin-bottom: 30px
+    }
+
+    .page-intro h1 {
+        font-size: 2.8rem
+    }
+
+    .page-intro p {
+        font-size: 1rem
+    }
+
+    .class-grid {
+        grid-template-columns: 1fr;
+        gap: 13px
+    }
+
+    .class-card {
+        min-height: 295px
+    }
+
+    .class-illustration {
+        height: 85px;
+        line-height: 85px
+    }
+
+    .resource-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px;
+        gap: 16px
+    }
+
+    .resource-panel .primary-button,
+    .resource-panel .secondary-button {
+        width: 100%
+    }
+
+    .events-toolbar {
+        align-items: flex-start
+    }
+
+    .events-toolbar h2 {
+        font-size: 1.6rem
+    }
+
+    .event-card {
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 18px
+    }
+
+    .event-date-block {
+        width: 72px
+    }
+
+    .event-date-block strong {
+        font-size: 1.8rem
+    }
+
+    .event-info {
+        min-width: calc(100% - 90px)
+    }
+
+    .event-actions {
+        margin-left: 87px
+    }
+
+    .admin-panel {
+        padding: 20px
+    }
+
+    .site-footer {
+        padding: 25px 18px;
+        display: block
+    }
+
+    .site-footer>span {
+        display: block;
+        margin-top: 20px
+    }
+
+    .app-dialog {
+        padding: 25px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior: auto
+    }
+
+    .feature-card,
+    .class-card {
+        transition: none
+    }
+}

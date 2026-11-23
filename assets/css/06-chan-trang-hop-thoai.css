@@ -1,0 +1,98 @@
+.site-footer {
+    background: #fff;
+    border-top: 1px solid #e8edf4;
+    padding: 28px max(5%, calc((100vw - 1200px)/2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    color: #78859a;
+    font-size: .83rem
+}
+
+.footer-brand {
+    gap: 10px;
+    color: #173e78;
+    font-weight: 800;
+    font-size: .8rem;
+    letter-spacing: .06em
+}
+
+.footer-brand img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%
+}
+
+.footer-brand small {
+    letter-spacing: 0;
+    font-weight: 400
+}
+
+.app-dialog {
+    width: min(450px, calc(100vw - 30px));
+    border: 1px solid #e0e9f3;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 26px 90px #1025484d;
+    color: #1c3156
+}
+
+.app-dialog::backdrop {
+    background: #0c213d9c
+}
+
+.app-dialog form {
+    display: grid;
+    gap: 17px
+}
+
+.dialog-close {
+    position: absolute;
+    right: 18px;
+    top: 18px
+}
+
+.app-dialog h2 {
+    font: 600 2rem Georgia, serif;
+    margin: 0
+}
+
+.app-dialog p {
+    color: #687a93;
+    margin: 0
+}
+
+.app-dialog .form-error {
+    color: #af2d35;
+    font-weight: 650;
+    font-size: .88rem
+}
+
+.full-width {
+    width: 100%
+}
+
+.text-button {
+    border: 0;
+    background: none;
+    color: #1c589d;
+    font-weight: 700;
+    padding: 3px
+}
+
+.toast {
+    position: fixed;
+    z-index: 40;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #193d72;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 11px;
+    box-shadow: 0 10px 28px #14355d4d;
+    text-align: center;
+    max-width: 90vw
+}
+
