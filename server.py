@@ -34,6 +34,14 @@ STATIC = {
     "/assets/logo-inhaxio.jpg": ("assets/logo-inhaxio.jpg", "image/jpeg"),
 }
 
+# Mobile icons v1
+STATIC.update({
+    "/assets/apple-touch-icon.png": ("assets/apple-touch-icon.png", "image/png"),
+    "/assets/icon-192.png": ("assets/icon-192.png", "image/png"),
+    "/assets/icon-512.png": ("assets/icon-512.png", "image/png"),
+    "/assets/site.webmanifest": ("assets/site.webmanifest", "application/manifest+json; charset=utf-8"),
+})
+
 # Chỉ phục vụ các tài nguyên được khai báo; không công khai .env hoặc data.
 STATIC.update({
     '/assets/css/01-chung.css': ('assets/css/01-chung.css', 'text/css; charset=utf-8'),
