@@ -1,12 +1,22 @@
-<dialog id="event-dialog" class="app-dialog">
-    <form id="event-form" method="dialog"><button type="button" class="dialog-close" data-close-dialog
-        aria-label="Đóng">✕</button><span class="eyebrow">LỊCH HOẠT ĐỘNG</span>
-      <h2 id="event-title">Thêm sự kiện</h2><input id="event-id" type="hidden"><label>Tên sự kiện<input id="event-name"
-          name="title" required maxlength="120"></label><label>Ngày và giờ<input id="event-date" name="event_date"
-          type="datetime-local" required></label><label>Địa điểm<input id="event-location" name="location" required
-          maxlength="160"></label><label>Giới thiệu ngắn<textarea id="event-description" name="description" rows="4"
-          maxlength="2000"></textarea></label>
-      <p id="event-error" class="form-error" role="alert" hidden></p><button type="submit"
-        class="primary-button full-width">Lưu sự kiện</button>
-    </form>
-  </dialog>
+<dialog id="event-dialog" class="app-dialog"><form id="event-form">
+<div class="ev-dialog-top"><button type="button" data-close-dialog aria-label="Đóng cửa sổ" title="Đóng">✕</button></div>
+<h2 id="event-title">THÊM SỰ KIỆN</h2><input id="event-id" type="hidden">
+<fieldset><legend>THÔNG TIN CHUNG</legend>
+<label>Tên sự kiện<input id="event-name" required maxlength="120"></label>
+<label>Giới thiệu ngắn<textarea id="event-description" maxlength="2000"></textarea></label>
+</fieldset>
+<fieldset><legend>THỜI GIAN – ĐỊA ĐIỂM</legend>
+<label><input id="event-unknown" type="checkbox"> Chưa chốt ngày</label>
+<label>Năm<input id="event-year" type="number" min="2000" max="2100" required></label>
+<div class="ev-datetime"><label>Bắt đầu — ngày<input id="event-date" type="date"></label><label>Giờ Nhật Bản<select id="event-date-hour" aria-label="Giờ Bắt đầu"></select></label><label>Phút<select id="event-date-minute" aria-label="Phút Bắt đầu"></select></label></div>
+<div class="ev-datetime"><label>Kết thúc (không bắt buộc) — ngày<input id="event-end" type="date"></label><label>Giờ Nhật Bản<select id="event-end-hour" aria-label="Giờ Kết thúc (không bắt buộc)"></select></label><label>Phút<select id="event-end-minute" aria-label="Phút Kết thúc (không bắt buộc)"></select></label></div>
+<label>Địa điểm<input id="event-location" maxlength="160"></label>
+</fieldset>
+<fieldset><legend>NỘI DUNG CHƯƠNG TRÌNH</legend>
+<label>Thông tin chi tiết<textarea id="event-content" rows="5" maxlength="15000"></textarea></label>
+<label>Lịch trình<textarea id="event-schedule" rows="5" maxlength="10000" placeholder="13:00 — Đón tiếp"></textarea></label></fieldset>
+
+<fieldset><legend>CÁC HẠNG MỤC</legend><p>Đặt tên khối, ghi chú và thêm các liên kết tệp trên Drive.</p><div id="event-blocks"></div><button type="button" id="event-add-block">＋ Thêm hạng mục</button></fieldset>
+<p id="event-error" class="form-error" role="alert" hidden></p>
+<div class="ev-actions"><button type="button" data-close-dialog>Hủy</button><button type="submit" value="published" class="primary-button" id="event-publish">Đăng sự kiện</button></div>
+</form></dialog>

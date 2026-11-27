@@ -238,6 +238,108 @@ def valid_sheet_url(value):
     return value
 
 
+
+def public_event_details(source):
+    details = dict(source)
+    details["documents"] = [d for d in details.get("documents", []) if not d.get("internal")]
+    if isinstance(details.get("blocks"), list):
+        details["blocks"] = [dict(b, attachments=[f for f in b.get("attachments", []) if not f.get("internal")])
+                             for b in details["blocks"] if not b.get("internal")]
+    return details
+
+
+def validate_event(data):
+    from urllib.parse import urlsplit
+    def text(key, limit, source=data):
+        value = str(source.get(key) or "").strip()
+        if len(value) > limit:
+            raise ValueError("Nội dung quá dài: " + key)
+        return value
+    def link(value):
+        value = str(value or "").strip()
+        if value and (len(value) > 2000 or urlsplit(value).scheme != "https" or not urlsplit(value).netloc):
+            raise ValueError("Liên kết phải bắt đầu bằng https:// và có tên miền.")
+        return value
+    title = text("title", 120)
+    if len(title) < 2:
+        raise ValueError("Tên sự kiện cần ít nhất 2 ký tự.")
+    d = data.get("details") or {}
+    if not isinstance(d, dict):
+        raise ValueError("Thông tin sự kiện không hợp lệ.")
+    year = int(d.get("year") or datetime.now().year)
+    if not 2000 <= year <= 2100:
+        raise ValueError("Năm phải từ 2000 đến 2100.")
+    unknown = d.get("unknown_date") is True
+    date = text("event_date", 40)
+    end = text("end", 40, d)
+    deadline = text("deadline", 40, d)
+    def check_date(value):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", value):
+            raise ValueError("Ngày giờ không hợp lệ.")
+        return datetime.fromisoformat(value)
+    if unknown:
+        date, end, deadline = f"{year}-01-01T00:00", "", ""
+    else:
+        begin = check_date(date)
+        year = begin.year
+        if end and check_date(end) < begin:
+            raise ValueError("Kết thúc phải sau thời gian bắt đầu.")
+        if deadline and check_date(deadline) > begin:
+            raise ValueError("Hạn đăng ký phải trước thời gian bắt đầu.")
+    visibility = d.get("visibility", "draft")
+    status = d.get("status", "auto")
+    if visibility not in ("draft", "published", "hidden", "trash") or status not in ("auto", "postponed", "cancelled"):
+        raise ValueError("Trạng thái không hợp lệ.")
+    docs = d.get("documents", [])
+    if not isinstance(docs, list) or len(docs) > 50:
+        raise ValueError("Tối đa 50 tài liệu.")
+    clean = []
+    for doc in docs:
+        if not isinstance(doc, dict):
+            raise ValueError("Tài liệu không hợp lệ.")
+        name = text("name", 120, doc)
+        url = link(doc.get("url"))
+        if not name or not url:
+            raise ValueError("Điền tên và liên kết cho từng tài liệu.")
+        clean.append({"name": name, "url": url, "internal": doc.get("internal") is True})
+    blocks = d.get("blocks")
+    clean_blocks = None
+    if blocks is not None:
+        if not isinstance(blocks, list) or len(blocks) > 30:
+            raise ValueError("Tối đa 30 hạng mục.")
+        clean_blocks = []
+        total_files = 0
+        for block in blocks:
+            if not isinstance(block, dict):
+                raise ValueError("Hạng mục không hợp lệ.")
+            block_title = text("title", 120, block)
+            if not block_title:
+                raise ValueError("Điền tên cho từng hạng mục.")
+            files = block.get("attachments", [])
+            if not isinstance(files, list) or len(files) > 50:
+                raise ValueError("Tối đa 50 tệp mỗi hạng mục.")
+            total_files += len(files)
+            if total_files > 200:
+                raise ValueError("Tối đa 200 tệp trong một sự kiện.")
+            clean_files = []
+            for file in files:
+                if not isinstance(file, dict):
+                    raise ValueError("Tệp đính kèm không hợp lệ.")
+                name, url = text("name", 120, file), link(file.get("url"))
+                if not name or not url:
+                    raise ValueError("Điền tên và liên kết cho từng tệp.")
+                clean_files.append({"name": name, "url": url, "internal": file.get("internal") is True})
+            clean_blocks.append({"title": block_title, "notes": text("notes", 10000, block),
+                                 "internal": block.get("internal") is True, "attachments": clean_files})
+    return {"title": title, "event_date": date, "location": text("location", 160),
+            "description": text("description", 2000), "details": {
+                "year": year, "unknown_date": unknown, "end": end, "deadline": deadline,
+                "visibility": visibility, "status": status,
+                "content": text("content", 15000, d), "schedule": text("schedule", 10000, d),
+                "registration": link(d.get("registration")), "album": link(d.get("album")),
+                "cover": link(d.get("cover")), "documents": clean,
+                **({"blocks": clean_blocks} if clean_blocks is not None else {})}}
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "Inhaxio/1.0"
 
@@ -257,7 +359,8 @@ class Handler(BaseHTTPRequestHandler):
         if not self.headers.get("Content-Type", "").lower().startswith("application/json"):
             raise ValueError("Yêu cầu cần gửi JSON.")
         size = int(self.headers.get("Content-Length", "0"))
-        if size < 1 or size > 16_384:
+        limit = 1_048_576 if self.path.split("?", 1)[0].startswith("/api/events") else 16_384
+        if size < 1 or size > limit:
             raise ValueError("Dữ liệu gửi lên quá lớn hoặc trống.")
         data = json.loads(self.rfile.read(size))
         if not isinstance(data, dict):
@@ -493,11 +596,16 @@ class Handler(BaseHTTPRequestHandler):
 
                 events = (
                     cloud.table("giaoly_events")
-                    .select("id,title,event_date,location,description")
+                    .select("id,title,event_date,location,description,details")
                     .order("event_date")
                     .order("id")
                     .execute().data
                 )
+
+                if not user or user["role"] != "admin":
+                    events = [e for e in events if (e.get("details") or {}).get("visibility", "published") == "published"]
+                    for e in events:
+                        e["details"] = public_event_details(e.get("details") or {})
 
                 self._json(200, {
                     "initialized": True,
@@ -941,21 +1049,8 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 if method in ("POST", "PUT") and (path == "/api/events" or re.fullmatch(r"/api/events/\d+", path)):
                     self._require_admin(db)
-                    title = str(data.get("title", "")).strip()
-                    date = str(data.get("event_date", "")).strip()
-                    location = str(data.get("location", "")).strip()
-                    description = str(data.get("description", "")).strip()
-                    if not 2 <= len(title) <= 120 or not 1 <= len(location) <= 160 or len(description) > 2000:
-                        raise ValueError("Vui lòng điền tên, địa điểm và mô tả ngắn gọn.")
-                    try:
-                        datetime.fromisoformat(date)
-                        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", date):
-                            raise ValueError()
-                    except ValueError:
-                        raise ValueError("Ngày giờ sự kiện không hợp lệ.") from None
+                    values = validate_event(data)
                     cloud = supabase_data_client()
-                    values = {"title": title, "event_date": date,
-                              "location": location, "description": description}
                     if method == "POST" and path == "/api/events":
                         cloud.table("giaoly_events").insert(values).execute()
                     elif method == "PUT" and path != "/api/events":
@@ -969,9 +1064,10 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 if method == "DELETE" and re.fullmatch(r"/api/events/\d+", path):
                     self._require_admin(db)
-                    supabase_data_client().table("giaoly_events").delete().eq(
-                        "id", int(path.rsplit("/", 1)[1])
-                    ).execute()
+                    changed = supabase_data_client().table("giaoly_events").delete().eq(
+                        "id", int(path.rsplit("/", 1)[1])).execute().data
+                    if not changed:
+                        raise ValueError("Không tìm thấy sự kiện.")
                     self._json(200, {"ok": True})
                     return
                 self._json(404, {"error": "Không tìm thấy chức năng."})
